@@ -4,13 +4,30 @@ import react from '@vitejs/plugin-react'
 // to a local version of the keycloakify package. This is not needed for normal usage.
 import commonjs from "vite-plugin-commonjs";
 import { keycloakify } from "keycloakify/vite-plugin";
-
+import sass from 'sass'
+import path from 'path';
+import alias from "@rollup/plugin-alias";
+const projectRootDir = path.resolve(__dirname);
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    resolve: {
+        alias: {
+            '~@ibm': path.join(__dirname, './node_modules/@ibm/'),
+            // '~': path.resolve(__dirname, './src'),
+        },
+    },
   plugins: [
-    react(), 
-    commonjs(), 
+    react(),
+    commonjs(),
+      alias({
+          entries: [
+              {
+                  find: '~',
+                  replacement: path.resolve(projectRootDir, './node_modules')
+              }
+          ]
+      }),
     keycloakify({
       // See: https://docs.keycloakify.dev/build-options#themename
       themeName: "keycloakify-starter",
@@ -44,7 +61,14 @@ export default defineConfig({
       }
     })
   ],
-  /* 
+    css: {
+        preprocessorOptions: {
+            scss: {
+                implementation: sass,
+            },
+        },
+    },
+  /*
    * Uncomment this if you want to use the default domain provided by GitHub Pages
    * replace "keycloakify-starter" with your repository name.  
    * This is only relevent if you are building an Wep App + A Keycloak theme.

@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import reactSvgUrl from "./assets/react.svg";
 import viteSvgUrl from "./assets/vite.svg";
 import { OidcProvider, useOidc, getKeycloakAccountUrl } from "./oidc";

@@ -1,14 +1,18 @@
 import { createGetKcContext } from "keycloakify/account";
 
-export type KcContextExtension =
-	| { pageId: "my-extra-page-1.ftl"; }
-	| { pageId: "my-extra-page-2.ftl"; someCustomValue: string; };
 
-export const { getKcContext } = createGetKcContext<KcContextExtension>({
+export const { getKcContext } = createGetKcContext({
 	mockData: [
 		{
-			pageId: "my-extra-page-2.ftl",
-			someCustomValue: "foo bar"
+			pageId: "account.ftl",
+			locale: {
+				//When we test the login page we do it in french
+				currentLanguageTag: "en",
+			},
+			//Uncomment the following line for hiding the Alert message
+			//"message": undefined
+			//Uncomment the following line for showing an Error message
+			// message: { type: "error", summary: "This is an error" }
 		}
 	],
 	mockProperties: {
@@ -17,7 +21,7 @@ export const { getKcContext } = createGetKcContext<KcContextExtension>({
 });
 
 export const { kcContext } = getKcContext({
-	//mockPageId: "password.ftl",
+	//mockPageId: "account.ftl",
 });
 
 export type KcContext = NonNullable<ReturnType<typeof getKcContext>["kcContext"]>;

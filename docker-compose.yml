@@ -1,0 +1,39 @@
+networks:
+  keycloack:
+    name: keycloack
+
+
+services:
+  keycloak-testing:
+    image: quay.io/keycloak/keycloak:23.0.6
+    container_name: keycloak-testing-container
+    ports:
+      - "8080:8080"
+      - "8180:8180"
+    networks:
+      - keycloack
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    volumes:
+      - "./dist_keycloak/target/keycloakify-starter-keycloak-theme-6.1.2.jar:/opt/keycloak/providers/keycloakify-starter-keycloak-theme-6.1.2.jar"
+      - "./dist_keycloak/src/main/resources/theme/account-v1:/opt/keycloak/themes/account-v1:rw"
+      - "./dist_keycloak/src/main/resources/theme/keycloakify-starter:/opt/keycloak/themes/keycloakify-starter:rw"
+      - "./dist_keycloak//src/main/resources/theme/keycloakify-starter_retrocompat:/opt/keycloak/themes/keycloakify-starter_retrocompat:rw"
+    command: start-dev --features=declarative-user-profile
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog
+    logging:
+      driver: 'none'
+    networks:
+      - keycloack
+    platform: linux/amd64
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    restart: always
+
+volumes:
+  keycloack:
+    name: keycloack

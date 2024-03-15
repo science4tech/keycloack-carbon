@@ -1,0 +1,26 @@
+@use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme' with (
+  $theme: themes.$g10
+);
+@use '@carbon/styles';
+@use '@carbon/type';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@include styles.css-grid();
+@include type.reset();
+@include type.default-type();
+@include type.type-classes();
+
+
+:root {
+	@include theme.theme();
+
+}
+.my-root-class body {
+	background: url(./assets/Bg-image.jpg) no-repeat center center fixed;
+	background-size: cover;
+}

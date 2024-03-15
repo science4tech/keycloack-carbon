@@ -1,0 +1,18 @@
+@use '@carbon/styles/scss/themes';
+@use '@carbon/styles/scss/theme' with (
+    $theme: themes.$g10,
+);
+@use '@carbon/styles';
+@use '@carbon/type';
+
+
+@include styles.css-grid();
+@include type.reset();
+@include type.default-type();
+@include type.type-classes();
+
+
+:root {
+  @include theme.theme();
+
+}
