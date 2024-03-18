@@ -23,7 +23,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
         classes
     });
 
-    const { social, realm, url, usernameHidden, login, auth, registrationDisabled } = kcContext;
+    const { social, realm, url, usernameHidden, login, auth } = kcContext;
 
     const { msg, msgStr } = i18n;
 
@@ -46,11 +46,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
     return (
         <Template
             {...{ kcContext, i18n, doUseDefaultCss, classes }}
-            displayInfo={
-                realm.password &&
-                realm.registrationAllowed &&
-                !registrationDisabled
-            }
+            displayInfo={false}
             displayWide={realm.password && social.providers !== undefined}
             headerNode={msg("doLogIn")}
             infoNode={

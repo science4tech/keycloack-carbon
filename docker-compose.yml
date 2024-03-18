@@ -17,6 +17,8 @@ services:
       - KEYCLOAK_ADMIN_PASSWORD=admin
     volumes:
       - "./dist_keycloak/target/keycloakify-starter-keycloak-theme-6.1.2.jar:/opt/keycloak/providers/keycloakify-starter-keycloak-theme-6.1.2.jar"
+      - "./dist_keycloak/target/create-user-email-event.jar:/opt/keycloak/providers/create-user-email-event.jar"
+      - "./dist_keycloak/target/create-user-email-event-sources.jar:/opt/keycloak/providers/create-user-email-event-sources.jar"
       - "./dist_keycloak/src/main/resources/theme/account-v1:/opt/keycloak/themes/account-v1:rw"
       - "./dist_keycloak/src/main/resources/theme/keycloakify-starter:/opt/keycloak/themes/keycloakify-starter:rw"
       - "./dist_keycloak//src/main/resources/theme/keycloakify-starter_retrocompat:/opt/keycloak/themes/keycloakify-starter_retrocompat:rw"
