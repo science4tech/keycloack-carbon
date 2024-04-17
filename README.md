@@ -7,7 +7,7 @@ yarn build-keycloak-theme
 
 # How to test
 
-launch the command
+launch the prevosuly command and then 
 ```bash
 docker-compose up -d
 ```
