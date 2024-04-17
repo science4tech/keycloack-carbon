@@ -5,7 +5,10 @@ networks:
 
 services:
   keycloak-testing:
-    image: quay.io/keycloak/keycloak:23.0.6
+    build:
+      dockerfile: ./keycloack/Dockerfile
+      args:
+        KEYCLOAK_VERSION: 23.0.6
     container_name: keycloak-testing-container
     ports:
       - "8080:8080"
@@ -19,10 +22,12 @@ services:
       - "./dist_keycloak/target/keycloakify-starter-keycloak-theme-6.1.2.jar:/opt/keycloak/providers/keycloakify-starter-keycloak-theme-6.1.2.jar"
       - "./dist_keycloak/target/create-user-email-event.jar:/opt/keycloak/providers/create-user-email-event.jar"
       - "./dist_keycloak/target/create-user-email-event-sources.jar:/opt/keycloak/providers/create-user-email-event-sources.jar"
+      - "./dist_keycloak/target/create-user-email-event-sources.jar:/opt/keycloak/providers/original-create-user-email-event.jar"
       - "./dist_keycloak/src/main/resources/theme/account-v1:/opt/keycloak/themes/account-v1:rw"
       - "./dist_keycloak/src/main/resources/theme/keycloakify-starter:/opt/keycloak/themes/keycloakify-starter:rw"
       - "./dist_keycloak//src/main/resources/theme/keycloakify-starter_retrocompat:/opt/keycloak/themes/keycloakify-starter_retrocompat:rw"
-    command: start-dev --features=declarative-user-profile
+      - "./trialnet-realm-export.json:/opt/keycloak/data/import/trialnet-realm-export.json"
+    command: start-dev --features=declarative-user-profile --import-realm
   mailhog:
     container_name: mailhog
     image: mailhog/mailhog

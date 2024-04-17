@@ -12,7 +12,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "build-keycloak-theme": "yarn build && keycloakify",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybookev -p 6006",
     "build-storybook": "storybook build"
   },
   "author": "u/garronej",

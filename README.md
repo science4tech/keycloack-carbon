@@ -219,3 +219,6 @@ EOF
 ```
 
 You can also remove `oidc-spa`, `powerhooks`, `zod` and `tsafe` from your dependencies.  
+
+
+pablo.aznarez@s4t.health
