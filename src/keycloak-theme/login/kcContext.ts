@@ -54,7 +54,7 @@ export const {getKcContext} = createGetKcContext<KcContextExtension>({
             //Uncomment the following line for hiding the Alert message
             //"message": undefined
             //Uncomment the following line for showing an Error message
-            // message: { type: "error", summary: "This is an error" }
+            message: { type: "error", summary: "This is an error<br>asdad" }
         }, {
             //NOTE: You will either use register.ftl (legacy) or register-user-profile.ftl, not both
             pageId: "register-user-profile.ftl",
@@ -124,7 +124,7 @@ export const {getKcContext} = createGetKcContext<KcContextExtension>({
 
 export const {kcContext} = getKcContext({
     // Uncomment to test the login page for development.
-    mockPageId: "login-update-password.ftl",
+    mockPageId: "login-update-profile.ftl",
 });
 
 

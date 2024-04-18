@@ -52,7 +52,10 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     if (!isReady) {
         return null;
     }
-
+    function containsHTMLTags(str: string) {
+        const regex = /<[^>]*>/;
+        return regex.test(str);
+    }
     return (
         <>
             <header aria-label="IBM Platform Name" className="cds--header bg-[--cds-layer] ">
@@ -121,16 +124,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     <div id="kc-content">
                         <div id="kc-content-wrapper">
                             {/* App-initiated actions should not see warning messages about the need to complete the action during login. */}
-                            {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
+                            {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && !containsHTMLTags(message.summary) && (
                                 <div className={clsx("alert", `alert-${message.type}`, 'px-4')}>
-                                    {message.type === "success" &&
-                                        <span className={getClassName("kcFeedbackSuccessIcon")}></span>}
-                                    {message.type === "warning" &&
-                                        <span className={getClassName("kcFeedbackWarningIcon")}></span>}
-                                    {message.type === "error" &&
-                                        <span className={getClassName("kcFeedbackErrorIcon")}></span>}
-                                    {message.type === "info" &&
-                                        <span className={getClassName("kcFeedbackInfoIcon")}></span>}
+
                                     <InlineNotification
                                         aria-label="closes notification"
                                         kind={message.type}
@@ -141,7 +137,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                         onCloseButtonClick={function noRefCheck() {
                                         }}
                                         statusIconDescription="notification"
-                                        subtitle={message.summary}
+                                        subtitle={message.summary.replace(/(<([^>]+)>)/gi, ", ")}
                                         title={message.type.charAt(0).toUpperCase() + message.type.slice(1)}
                                     />
                                 </div>

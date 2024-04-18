@@ -36,6 +36,8 @@ export default function LoginUpdateProfile(props: PageProps<Extract<KcContext, {
                             <TextInput
                                 id={'username'}
                                 type="text"
+                                invalid={messagesPerField.exists("username")}
+                                invalidText={messagesPerField.get("username")}
                                 labelText={msg("username")}
                                 className={getClassName("kcInputClass")}
                                 name={'username'}
@@ -54,6 +56,8 @@ export default function LoginUpdateProfile(props: PageProps<Extract<KcContext, {
                             id={'email'}
                             type="text"
                             labelText= {msg("email")}
+                            invalid={messagesPerField.exists("email")}
+                            invalidText={messagesPerField.get("email")}
                             className={getClassName("kcInputClass")}
                             name={'email'}
                             defaultValue={user.email ?? ""}/>
@@ -72,10 +76,12 @@ export default function LoginUpdateProfile(props: PageProps<Extract<KcContext, {
                             <TextInput
                                 id={'firstName'}
                                 type="text"
+                                invalid={messagesPerField.exists("firstName")}
+                                invalidText={messagesPerField.get("firstName")}
                                 labelText={msg("firstName")}
                                 className={getClassName("kcInputClass")}
                                 name={'firstName'}
-                                defaultValue={user.email ?? ""}/>
+                                defaultValue={user.firstName ?? ""}/>
                         </Layer>
                     </div>
                 </div>
@@ -91,6 +97,8 @@ export default function LoginUpdateProfile(props: PageProps<Extract<KcContext, {
                             <TextInput
                                 id={'lastName'}
                                 type="text"
+                                invalid={messagesPerField.exists("lastName")}
+                                invalidText={messagesPerField.get("lastName")}
                                 labelText={msg("lastName")}
                                 className={getClassName("kcInputClass")}
                                 name={'lastName'}
