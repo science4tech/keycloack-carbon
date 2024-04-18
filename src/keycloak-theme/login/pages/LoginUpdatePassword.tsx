@@ -46,7 +46,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                         <Layer>
                             <CustomTextInput.PasswordInput
                                 id={'password-new'}
-                                type="text"
+                                type="password"
                                 autoFocus={true}
                                 autoComplete="new-password"
                                 labelText={msg("passwordNew")}
@@ -68,8 +68,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                         <Layer>
                             <CustomTextInput.PasswordInput
                                 id={'password-confirm'}
-                                type="text"
-                                autoFocus={true}
+                                type="password"
                                 autoComplete="new-password"
                                 labelText={msg("passwordConfirm")}
                                 className={getClassName("kcLabelClass")}

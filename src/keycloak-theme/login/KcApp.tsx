@@ -8,6 +8,7 @@ import LoginUpdatePassword from "./pages/LoginUpdatePassword.tsx";
 import Error from "./pages/Error.tsx";
 import LoginVerifyEmail from "./pages/LoginVerifyEmail.tsx";
 import LoginPageExpired from "./pages/LoginPageExpired.tsx";
+import LoginUpdateProfile from "./pages/LoginUpdateProfile.tsx";
 
 const Login = lazy(() => import("./pages/Login"));
 // If you can, favor register-user-profile.ftl over register.ftl, see: https://docs.keycloakify.dev/realtime-input-validation
@@ -56,6 +57,7 @@ export default function KcApp(props: { kcContext: KcContext; }) {
                     case "login-verify-email.ftl": return <LoginVerifyEmail {...{ kcContext, i18n, Template, classes }} doUseDefaultCss={true} />;
                     case "login-page-expired.ftl": return <LoginPageExpired {...{ kcContext, i18n, Template, classes }} doUseDefaultCss={true} />;
                     case "error.ftl": return <Error {...{ kcContext, i18n, Template, classes }} doUseDefaultCss={true} />;
+                    case "login-update-profile.ftl": return <LoginUpdateProfile {...{ kcContext, i18n, Template, classes }} doUseDefaultCss={true} />;
                     // We choose to use the default Template for the Info page and to download the theme resources.
                     // This is just an example to show you what is possible. You likely don't want to keep this as is. 
                     case "info.ftl": return (
